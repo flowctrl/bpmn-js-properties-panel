@@ -59,7 +59,7 @@ var triggerEvent = function(element, eventType) {
 
   eventType = eventType || 'change';
 
-  if (!!document.createEvent) {
+  if (document.createEvent) {
     try {
       // Chrome, Safari, Firefox
       evt = new MouseEvent((eventType), { view: window, bubbles: true, cancelable: true });
@@ -115,11 +115,11 @@ var selectedByOption = function(element, optionValue) {
 
   var options = domQuery.all('option', element);
 
-  for(var i = 0; i< options.length; i++) {
+  for (var i = 0; i< options.length; i++) {
 
     var option = options[i];
 
-    if(option.value === optionValue) {
+    if (option.value === optionValue) {
       element.selectedIndex = i;
       break;
     }
@@ -132,7 +132,7 @@ var selectedByOption = function(element, optionValue) {
  * @returns {*}
  */
 var selectedByIndex = function(element) {
-  if( !element ) {
+  if (!element) {
     return null;
   }
 
@@ -148,4 +148,4 @@ module.exports.selectedByOption = selectedByOption;
 module.exports.selectedByIndex = selectedByIndex;
 
 
-chai.use(require('./matchers'));
+global.chai.use(require('./matchers'));
